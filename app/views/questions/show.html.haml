@@ -5,7 +5,8 @@
         .panel-heading
           %h4.panel-title= @question.title
         .panel-body
-          %p= @question.description
+          :markdown
+            #{@question.description}
         .panel-footer
           %p Response
           - response = @question.selections.size * 100 / User.all.size

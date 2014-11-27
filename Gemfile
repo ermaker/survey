@@ -45,6 +45,7 @@ gem 'bootstrap-sass-extras'
 gem 'autoprefixer-rails'
 gem 'devise'
 gem 'rails_admin'
+gem 'redcarpet'
 group :development, :test do
   gem 'rspec-rails'
   gem 'spring-commands-rspec'
