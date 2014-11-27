@@ -43,6 +43,7 @@ gem 'haml-rails'
 gem 'bootstrap-sass'
 gem 'bootstrap-sass-extras'
 gem 'autoprefixer-rails'
+gem 'devise'
 gem 'rails_admin'
 group :development, :test do
   gem 'rspec-rails'
