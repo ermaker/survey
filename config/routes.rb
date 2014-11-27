@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  root to: 'questions#index'
+  devise_scope :user do
+    unauthenticated do
+      root to: 'users/sessions#new'
+    end
+  end
 
   resources :questions do
     resources :options
