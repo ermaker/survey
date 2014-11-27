@@ -1,0 +1,7 @@
+%tr
+  %td
+    = selection.user.name
+  %td
+    %ul.list-inline
+      - selection.options.each do |option|
+        %li= option.name

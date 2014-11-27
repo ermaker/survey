@@ -1,0 +1,8 @@
+- selection = question.selections.where(user: current_user).first_or_initialize
+= form_for [question, selection], role: 'form' do |f|
+  - question.options.each do |option|
+    .form-group.input-group
+      %span.input-group-addon
+        %input.checkbox{type: 'checkbox', name:'selection[option_ids][]', value: option.id, checked: selection.options.where(_id: option).exists?}
+      %p.form-control.form-control-static
+        = option.name

@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
   root to: 'questions#index'
 
-  resources :questions
+  resources :questions do
+    resources :options
+    resources :selections
+  end
 
   devise_for :users, controllers: {
     sessions: 'users/sessions',

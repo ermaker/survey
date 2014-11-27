@@ -1,12 +1,41 @@
-%p#notice= notice
-
-%p
-  %b Title:
-  = @question.title
-%p
-  %b Description:
-  = @question.description
-
-= link_to 'Edit', edit_question_path(@question)
-\|
-= link_to 'Back', questions_path
+.col-md-12
+  .row
+    .col-md-12
+      .panel.panel-info
+        .panel-heading
+          %h4.panel-title= @question.title
+        .panel-body
+          %p= @question.description
+        .panel-footer
+          %p Response
+          - response = @question.selections.size * 100 / User.all.size
+          .progress
+            .progress-bar.progress-bar-striped.active{role: 'progressbar', style: "width: #{response}%;"}
+            .progress-bar.progress-bar-striped.active.progress-bar-danger{role: 'progressbar', style: "width: #{100-response}%;"}
+  .row
+    .col-md-4
+      .panel.panel-primary
+        .panel-heading
+          %h4.panel-title
+            Your Choice
+        .panel-body
+          = render 'questions/selection', question: @question
+          = form_for [@question, @question.options.new] do |f|
+            .form-group.input-group
+              %span.input-group-addon
+                %input.checkbox.disabled{type: 'checkbox', disabled: true}
+              = f.text_field :name, class: 'form-control', placeholder: 'Type new option...'
+              %span.input-group-btn
+                %button.btn.btn-default
+                  = glyph 'plus'
+    .col-md-8
+      .panel.panel-default
+        .panel-heading
+          %h4.panel-title
+            Survey Status
+        %table.table
+          %tr
+            %th Name
+            %th Choice
+          - @question.selections.each do |selection|
+            = render selection
