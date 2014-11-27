@@ -6,3 +6,5 @@
         %input.checkbox{type: 'checkbox', name:'selection[option_ids][]', value: option.id, checked: selection.options.where(_id: option).exists?}
       %p.form-control.form-control-static
         = option.name
+      %span.input-group-addon
+        %span.badge= question.selections.in(option_ids: option).size
