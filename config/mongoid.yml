@@ -76,6 +76,15 @@ production:
     # Define the default session.
     default:
       uri: <%= ENV['MONGOLAB_URI'] %>
+      options:
+        write:
+          w: :majority
+        read: :primary
+        max_retries: 30
+        retry_interval: 1
+        timeout: 15
+        refresh_interval: 10
+
   # Here we put the Mongoid specific configuration options. These are explained
   # in more detail next.
   options:
